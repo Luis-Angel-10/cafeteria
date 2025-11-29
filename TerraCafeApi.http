@@ -1,0 +1,6 @@
+@TerraCafeApi_HostAddress = http://localhost:5227
+
+GET {{TerraCafeApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
