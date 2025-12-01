@@ -1,4 +1,4 @@
-export interface AbastecimientosDTO {
+export interface DistribuidoraDTO {
     id: number;
     nombre: string;
     direccion: string;

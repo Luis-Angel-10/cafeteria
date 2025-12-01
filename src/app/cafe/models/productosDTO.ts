@@ -1,4 +1,4 @@
-export interface AbastecimientosDTO {
+export interface ProdutosDTO {
     id: number;
     nombre: string;
     descripcion: string;

@@ -12,7 +12,7 @@ import { CafeteriaDTO } from "../models/cafeteriaDTO";
 export class ServcioCafeterias {
 
     private http = inject(HttpClient);
-    private urlCafeterias = environment.apiURL + 'cafeterias';
+    private urlCafeterias = environment.apiURL + 'Cafeterias';
 
     public getCafeterias():Observable<CafeteriaDTO[]> {
         return this.http.get<CafeteriaDTO[]>(this.urlCafeterias);
