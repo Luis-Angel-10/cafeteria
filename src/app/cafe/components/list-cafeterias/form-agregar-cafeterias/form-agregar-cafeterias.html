@@ -1,35 +1,47 @@
-<H1>Agregar Cafeterias</H1>
+<h1>Agregar Cafetería</h1>
 
+<form [formGroup]="formCafeterias" (submit)="onSubmit()" class="form-container">
 
-<form [formGroup]="formCafeterias" (submit)="onSubmit" class="form-coontainer">
+  <mat-card-title>Registro de Cafeterías</mat-card-title>
 
-    <mat-card-title class="mat-card-tittle">Registro de Cafeterias </mat-card-title>
-        <mat-card-content>
-            <mat-form-field appearance="outline" class="cover-full">
-                <mat-label>ID</mat-label>
-                <input matInput type="text" [formControl]="formCafeterias.controls.id" maxlength="10" placeholder="0000">
-            </mat-form-field>
-            </mat-card-content>
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" maxlength="50">
+    </mat-form-field>
+  </mat-card-content>
 
-             <mat-card-content>
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nombre</mat-label>
-                <input matInput type="text" [formControl]="formCafeterias.controls.nombre" maxlength="50" placeholder="Nombre completo">
-            </mat-form-field>
-        </mat-card-content>
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Ubicación</mat-label>
+      <input matInput formControlName="direccion" maxlength="50">
+    </mat-form-field>
+  </mat-card-content>
 
-         <mat-card-content>
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nombre</mat-label>
-                <input matInput type="text" [formControl]="formCafeterias.controls.ubicacion" maxlength="50" placeholder="Ubicación">
-            </mat-form-field>
-        </mat-card-content>
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono" maxlength="15">
+    </mat-form-field>
+  </mat-card-content>
 
-         <mat-card-content>
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nombre</mat-label>
-                <input matInput type="text" [formControl]="formCafeterias.controls.telefono" maxlength="50" placeholder="Telefono">
-            </mat-form-field>
-        </mat-card-content>
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Horario</mat-label>
+      <input matInput formControlName="horario">
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Fecha de Registro</mat-label>
+      <input matInput type="date" formControlName="fechaRegistro">
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" type="submit">Guardar</button>
+    <a mat-stroked-button color="warn" routerLink="/Cafeteria">Cancelar</a>
+  </mat-card-actions>
 
 </form>
