@@ -1,1 +1,73 @@
+<<<<<<< HEAD
+=======
+<h3>Cafeterias</h3>
 
+<a routerLink="/cafeteria/crear" mat-flat-button color="primary">
+  <mat-icon>add</mat-icon>
+  Agregar Cafeterias
+</a>
+
+<mat-form-field appearance="fill">
+  <mat-label>Buscar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar">
+</mat-form-field>
+
+<table mat-table [dataSource]="cafeteriasDataSource" class="mat-elevation-z8 full-width-table">
+
+  <!-- Columnas -->
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let cafeteria"> {{ cafeteria.id }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let cafeteria"> {{ cafeteria.nombre }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ubicacion">
+    <th mat-header-cell *matHeaderCellDef> Ubicación </th>
+    <td mat-cell *matCellDef="let cafeteria"> {{ cafeteria.ubicacion }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="telefono">
+    <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+    <td mat-cell *matCellDef="let cafeteria"> {{ cafeteria.telefono }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="horario">
+    <th mat-header-cell *matHeaderCellDef> Horario </th>
+    <td mat-cell *matCellDef="let cafeteria"> {{ cafeteria.horario }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fechaRegistro">
+    <th mat-header-cell *matHeaderCellDef> Fecha de Registro </th>
+    <td mat-cell *matCellDef="let cafeteria">
+      {{ cafeteria.fechaRegistro | date:'dd/MM/yyyy HH:mm' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let cafeteria">
+      <a routerLink="/cafeteria/actualizar/{{cafeteria.id}}" mat-flat-button color="primary"> Actualizar</a>
+      <button routerLink="/cafeteria/eliminar/{{cafeteria.id}}" mat-flat-button color="warn">Eliminar</button>
+    </td>
+  </ng-container>
+
+  <!-- Filas -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <!-- Mensaje cuando no hay datos -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="7">No se encontraron cafeterias.</td>
+  </tr>
+
+</table>
+>>>>>>> 4067be81ec04526e28e2a05eb0d0459c25212504
+
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

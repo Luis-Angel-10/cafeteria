@@ -1,0 +1,10 @@
+.full-width-table {
+  width: 100%;
+  overflow: auto;
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  padding: 20px;
+}

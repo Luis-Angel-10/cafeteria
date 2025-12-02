@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -9,59 +9,57 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router, RouterLink } from '@angular/router';
 import { ServcioCafeterias } from '../service/servicio-cafeterias';
 import { CafeteriaDTO } from '../models/cafeteriaDTO';
-
+import { CafeteriaCreateDTO } from '../models/CafeteriaCreateDO';
 
 @Component({
   selector: 'app-form-agregar-cafeterias',
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatSelectModule,
     MatFormFieldModule,
     MatOptionModule,
-    RouterLink],
+    RouterLink
+  ],
   templateUrl: './form-agregar-cafeterias.html',
   styleUrl: './form-agregar-cafeterias.css',
 })
 export class FormAgregarCafeterias {
-  private  formBuilder = Inject(FormBuilder);
-  private route = Inject(Router);
-  private cafeteriasServices = Inject(ServcioCafeterias);
-  
-  cafeteriaDataSource! : CafeteriaDTO[];
+
+  private formBuilder = inject(FormBuilder);
+  private route = inject(Router);
+  private cafeteriasServices = inject(ServcioCafeterias);
 
   formCafeterias = this.formBuilder.group({
-    nombre: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50)],
-    direccion: ['', Validators.required,Validators.minLength(3), Validators.maxLength(50)],
-    telefono: ['', Validators.minLength(3), Validators.maxLength(50)],
-    horario: ['', Validators.minLength(3), Validators.maxLength(50)],
-    fechaRegistro: ['', Validators.minLength(3), Validators.maxLength(50)],
-    imagen: [''],
+    nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    ubicacion: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    latitud: ['', [Validators.required]],
+    longitud: ['', [Validators.required]],
+    telefono: ['', [Validators.minLength(3), Validators.maxLength(50)]],
+    horario: ['', [Validators.required]],
+    fechaRegistro: ['', [Validators.required]],
   });
 
- onSubmit() {
+  onSubmit() {
     if (!this.formCafeterias.valid) {
       return;
     }
-    const cafeteria =this.formCafeterias.value as CafeteriaDTO;
-    console.log(cafeteria);
 
+    const cafeteria = this.formCafeterias.value as unknown as CafeteriaCreateDTO;
+    
+    console.log(cafeteria);
     const formData = new FormData();
-    formData.append('nombre', cafeteria.nombre);
-    formData.append('direccion', cafeteria.ubicacion);
-    formData.append('telefono', cafeteria.telefono);
-    formData.append('horario', cafeteria.horario);
+    formData.append('nombre', cafeteria.nombre!);
+    formData.append('ubicacion', cafeteria.ubicacion!);
+    formData.append('telefono', cafeteria.telefono!);
+    formData.append('horario', cafeteria.horario!);
     formData.append('fechaRegistro', cafeteria.fechaRegistro.toLocaleDateString());
 
-    this.cafeteriasServices.postCafeterias(formData).subscribe({
-      next: () => {
-        this.route.navigate(['/cafeterias']);
-      },
 
+    this.cafeteriasServices.postCafeterias(formData).subscribe(() => {
+      this.route.navigate(['/cafeterias']);
     });
-
-  } 
-
-  
+  }
 }
