@@ -1,7 +1,6 @@
 export interface AbastecimientosDTO {
-    id: number;
+    id?: number;
     cantidad: number;
-    fechaEnvio: Date;
     cafeteriaId: number;
     productoId: number;
-}   
+}       
